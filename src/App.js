@@ -1,10 +1,5 @@
-import React from 'react';
-import { Home } from './components/Home';
+import { AppRouter } from './routes/AppRouter';
 
 export const App = () => {
-  return (
-    <>
-    <Home />
-    </>
-  )
+  return <AppRouter />;
 };
