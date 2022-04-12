@@ -1,3 +1,17 @@
+import { Form } from '../ui/Form';
+import { MapPage } from './MapPage';
+
 export const Home = () => {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <div className="flex flex-row gap-3 items-center">
+        <div className="basis-1/3">
+          <Form />
+        </div>
+        <div className="basis-2/3">
+          <MapPage />
+        </div>
+      </div>
+    </>
+  );
 };
