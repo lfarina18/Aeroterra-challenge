@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Aeroterra S.A. Challenge - Geolocation app
+
+Through the form you can mark the point of interest on the map, and see its description.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
