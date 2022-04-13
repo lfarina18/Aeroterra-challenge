@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import validateCoords from '../../utils/validateCoords';
 
-export const Form = ({setFormValues}) => {
-  const [inputValue, handleInputChange] = useForm({
+export const Form = ({ setFormValues }) => {
+  const [inputValue, handleInputChange, reset] = useForm({
     description: '',
     direction: '',
     phone: '',
@@ -27,13 +27,16 @@ export const Form = ({setFormValues}) => {
     const lat = Number(coordLat);
     const lng = Number(coordLng);
 
-    if(!validateCoords(lat, lng)) return;
+    if (!validateCoords(lat, lng)) return;
 
     setFormValues({ ...inputValue, coordinates: [lng, lat] });
+    setCoordLat('');
+    setCoordLng('');
+    reset();
   };
 
   return (
-    <div className=" p-6 rounded-lg shadow-lg bg-neutral-200 max-w-md">
+    <div className=" p-6 rounded-lg shadow-lg bg-neutral-200 max-w-md mx-auto">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -119,7 +122,7 @@ export const Form = ({setFormValues}) => {
           <select
             name="category"
             onChange={handleInputChange}
-            defaultValue={category}
+            value={category}
             className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
             <option value="" disabled>
               Seleccione una categoría

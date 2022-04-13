@@ -6,7 +6,7 @@ import Graphic from '@arcgis/core/Graphic';
 export const MapView = ({ basemap, zoom, formVal }) => {
   const [view, setView] = useState(null);
   const mapRef = useRef();
-  const {description, direction, phone, coordinates, category} = formVal;
+  const { description, direction, phone, coordinates, category } = formVal;
 
   useEffect(() => {
     // read map and view properties from props
@@ -30,66 +30,63 @@ export const MapView = ({ basemap, zoom, formVal }) => {
   useEffect(() => {
     if (!view) return;
     const search = new Search({
-      //Add Search widget
       view: view,
     });
-    view.ui.add(search, 'top-right'); //Add to the map
+    view.ui.add(search, 'top-right');
 
     if (formVal.coordinates) {
       const point = {
-        type: 'point', // autocasts as new Point()
+        type: 'point',
         longitude: formVal.coordinates[0],
         latitude: formVal.coordinates[1],
       };
 
       const markerSymbol = {
-        type: 'simple-marker', // autocasts as new SimpleMarkerSymbol()
+        type: 'simple-marker',
         color: [226, 119, 40],
         outline: {
-          // autocasts as new SimpleLineSymbol()
           color: [255, 255, 255],
           width: 2,
         },
       };
 
       const lineAtt = {
-        'Descripción': description,
-        'Dirección': direction,
-        'Teléfono':phone,
+        Descripción: description,
+        Dirección: direction,
+        Teléfono: phone,
         'Coord X-Y': `${coordinates[0]}, ${coordinates[1]}`,
-        'Categoría': category,
+        Categoría: category,
       };
-       
+
       const pointGraphic = new Graphic({
         geometry: point,
         symbol: markerSymbol,
         attributes: lineAtt,
         popupTemplate: {
-          // autocasts as new PopupTemplate()
-          title: "Punto de interés",
+          title: 'Punto de interés',
           content: [
             {
-              type: "fields",
+              type: 'fields',
               fieldInfos: [
                 {
-                  fieldName: "Descripción"
+                  fieldName: 'Descripción',
                 },
                 {
-                  fieldName: "Dirección"
+                  fieldName: 'Dirección',
                 },
                 {
-                  fieldName: "Teléfono"
+                  fieldName: 'Teléfono',
                 },
                 {
-                  fieldName: "Coord X-Y"
+                  fieldName: 'Coord X-Y',
                 },
                 {
-                  fieldName: "Categoría"
-                }
-              ]
-            }
-          ]
-        }
+                  fieldName: 'Categoría',
+                },
+              ],
+            },
+          ],
+        },
       });
 
       view.graphics.add(pointGraphic);

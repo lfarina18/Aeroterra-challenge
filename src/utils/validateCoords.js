@@ -1,7 +1,6 @@
 import Swal from 'sweetalert2';
 
 const validateCoords = (lat, lng) => {
-  
   if (lat < -90 || lat > 90) {
     Swal.fire({
       icon: 'error',
