@@ -9,7 +9,7 @@ export const MapPage = ({formVal}) => {
   
   return (
     <>
-      <MapView basemap={basemap} zoom="12" formVal={formVal}/>
+      <MapView basemap={basemap} zoom="11" formVal={formVal}/>
       <BasemapSelect value={basemap} changeBasemap={setBasemap}  />
     </>
   );

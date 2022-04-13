@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import validateCoords from '../../utils/validateCoords';
 
-export const Form = ({setFormValues, values}) => {
+export const Form = ({setFormValues}) => {
   const [inputValue, handleInputChange] = useForm({
     description: '',
     direction: '',
