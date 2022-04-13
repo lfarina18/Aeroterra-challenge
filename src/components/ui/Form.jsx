@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from '../../hooks/useForm';
+import validateCoords from '../../utils/validateCoords';
 
-export const Form = () => {
+export const Form = ({setFormValues, values}) => {
+  const [inputValue, handleInputChange] = useForm({
+    description: '',
+    direction: '',
+    phone: '',
+    coordinates: '',
+    category: '',
+  });
+  const [coordLat, setCoordLat] = useState('');
+  const [coordLng, setCoordLng] = useState('');
+
+  const { description, direction, phone, category } = inputValue;
+
+  const handleCoordinatesX = (e) => {
+    setCoordLat(e.target.value);
+  };
+  const handleCoordinatesY = (e) => {
+    setCoordLng(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const lat = Number(coordLat);
+    const lng = Number(coordLng);
+
+    if(!validateCoords(lat, lng)) return;
+
+    setFormValues({ ...inputValue, coordinates: [lng, lat] });
+  };
+
   return (
     <div className=" p-6 rounded-lg shadow-lg bg-neutral-200 max-w-md">
-      <form>
-        <div className="mb-6">
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
           <label
             htmlFor="InputDescription"
             className="form-label inline-block mb-2 text-gray-700">
@@ -16,10 +47,13 @@ export const Form = () => {
             id="InputDescription"
             aria-describedby="emailHelp"
             placeholder="Ej: AEROTERRA S.A."
+            name="description"
+            value={description}
+            onChange={handleInputChange}
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="InputDirection"
             className="form-label inline-block mb-2 text-gray-700">
@@ -30,10 +64,13 @@ export const Form = () => {
             className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id="InputDirection"
             placeholder="Ej: Av. Eduardo Madero 1020, C1001 CABA"
+            name="direction"
+            value={direction}
+            onChange={handleInputChange}
           />
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4">
           <label
             htmlFor="InputPhone"
             className="form-label inline-block mb-2 text-gray-700">
@@ -43,8 +80,54 @@ export const Form = () => {
             type="text"
             className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             id="InputPhone"
-            placeholder="Ej: Av. Eduardo Madero 1020, C1001 CABA"
+            placeholder="Ej: 54 9 11 5272 0900"
+            name="phone"
+            value={phone}
+            onChange={handleInputChange}
           />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="InputCoord"
+            className="form-label inline-block mb-2 text-gray-700">
+            Coordenadas X e Y
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="InputPhone"
+              placeholder="Ej. Lat: -34.595986"
+              name="coordinatesX"
+              value={coordLat}
+              onChange={handleCoordinatesX}
+            />
+            <input
+              type="number"
+              className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              id="InputPhone"
+              placeholder="Ej: Long: -58.3724715"
+              name="coordinatesY"
+              value={coordLng}
+              onChange={handleCoordinatesY}
+            />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <select
+            name="category"
+            onChange={handleInputChange}
+            defaultValue={category}
+            className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+            <option value="" disabled>
+              Seleccione una categoría
+            </option>
+            <option>Comercial</option>
+            <option>Residencial</option>
+            <option>Mixta</option>
+          </select>
         </div>
 
         <button

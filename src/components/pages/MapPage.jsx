@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { BasemapSelect } from '../ui/BasemapSelect';
-import { MapView } from '../ui/MapView';
+import { BasemapSelect } from '../BasemapSelect';
+import { MapView } from '../MapView';
 
-export const MapPage = () => {
+export const MapPage = ({formVal}) => {
   const [basemap, setBasemap] = useState('topo-vector');
   
+
   
   return (
     <>
-      <MapView basemap={basemap} zoom="13" />
-      <BasemapSelect value={basemap} changeBasemap={setBasemap} />
+      <MapView basemap={basemap} zoom="12" formVal={formVal}/>
+      <BasemapSelect value={basemap} changeBasemap={setBasemap}  />
     </>
   );
 };

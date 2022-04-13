@@ -20,7 +20,7 @@ export const BasemapSelect = ({ changeBasemap }) => {
 
   return (
     <div className="flex">
-      <div className="m-3 xl:w-96">
+      <div className="m-3 ">
         <select
           onChange={options}
           defaultValue=""
