@@ -2,6 +2,14 @@
 
 Through the form you can mark the point of interest on the map, and see its description.
 
+## Sample images
+
+![imagen1](https://user-images.githubusercontent.com/86262814/164075123-b426dfcd-84dd-4a6d-917b-3d695a6c513b.png)
+![imagen2](https://user-images.githubusercontent.com/86262814/164075139-ebbe66e6-fb56-4de6-80e6-c14c0bf21e13.png)
+![imagen3](https://user-images.githubusercontent.com/86262814/164075155-fe50b3de-2738-42cd-aa72-1ffcf47a3f49.png)
+![imagen4](https://user-images.githubusercontent.com/86262814/164075164-8b2a41b9-d0e9-42f0-8f8d-636868fa736f.png)
+
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
