@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from '../../hooks/useForm';
 import validateCoords from '../../utils/validateCoords';
 
-export const Form = ({ setFormValues }) => {
+export const Form = ({ handleAddPol }) => {
   const [inputValue, handleInputChange, reset] = useForm({
+    id: new Date().getTime(),
     description: '',
     direction: '',
     phone: '',
@@ -29,7 +30,7 @@ export const Form = ({ setFormValues }) => {
 
     if (!validateCoords(lat, lng)) return;
 
-    setFormValues({ ...inputValue, coordinates: [lng, lat] });
+    handleAddPol({ ...inputValue, coordinates: [lng, lat] });
     setCoordLat('');
     setCoordLng('');
     reset();
