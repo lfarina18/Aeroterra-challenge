@@ -37,7 +37,7 @@ export const MapView = ({ basemap, zoom, formVal }) => {
       setSearch(true);
     }
 
-    if (formVal[0].coordinates) {
+    if (formVal !== []) {
       
      formVal.forEach(item => {
       newPopup(view, item);
